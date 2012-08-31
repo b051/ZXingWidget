@@ -3,3 +3,4 @@
 /ZXingWidget.xcodeproj/*.pbxuser
 xcuserdata
 .svn
+/iphone/build/

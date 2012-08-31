@@ -72,7 +72,7 @@ echo "Step 4 : Create combine lib files for various platforms into one"
 lipo -create $BUILDDIR/Release-iphonesimulator/libZXingWidget.a $BUILDDIR/Release-iphoneos/libZXingWidget.a -output $LIBOUTPUTDIR/libZXingWidget.a || die "Could not create static output library"
 
 echo "Step 5 : Copy headers Needed"
-\cp $SRCPATH/*.h $LIBOUTPUTDIR/
+\cp $SRCPATH/Classes/*.h $LIBOUTPUTDIR/
 
 echo "Finished Universal ZXingWidget Generation"
 echo ""
