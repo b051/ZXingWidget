@@ -7,13 +7,13 @@
 //
 
 #import "AztecReader.h"
+#import "FormatReader+ForSubclass.h"
 #import <zxing/aztec/AztecReader.h>
 
 @implementation AztecReader
 
 - (id)init {
     zxing::aztec::AztecReader *reader = new zxing::aztec::AztecReader();
-    
     return [super initWithReader:reader];
 }
 

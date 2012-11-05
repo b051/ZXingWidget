@@ -18,7 +18,7 @@
  * limitations under the License.
  */
 
-#import "FormatReader.h"
+#import "FormatReader+ForSubclass.h"
 #import <zxing/MultiFormatReader.h>
 
 @interface MultiFormatReader : FormatReader
@@ -27,14 +27,14 @@
 @implementation MultiFormatReader
 
 + (void)load {
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  [FormatReader registerFormatReader:[[[self alloc] init] autorelease]];
-  [pool drain];
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	[FormatReader registerFormatReader:[[[self alloc] init] autorelease]];
+	[pool drain];
 }
 
 - (id)init {
-  zxing::MultiFormatReader *reader = new zxing::MultiFormatReader();
-  return [super initWithReader:reader];
+	zxing::MultiFormatReader *reader = new zxing::MultiFormatReader();
+	return [super initWithReader:reader];
 }
 
 @end

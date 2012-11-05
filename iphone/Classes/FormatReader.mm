@@ -18,10 +18,12 @@
  * limitations under the License.
  */
 
-#import "FormatReader.h"
+#import "FormatReader+ForSubclass.h"
 
 @implementation FormatReader
-
+{
+  zxing::Reader *reader_;
+}
 static NSMutableSet *sFormatReaders = nil;
 
 + (void)registerFormatReader:(FormatReader*)formatReader {

@@ -8,6 +8,7 @@
 
 #import "DataMatrixReader.h"
 #import <zxing/datamatrix/DataMatrixReader.h>
+#import "FormatReader+ForSubclass.h"
 
 @implementation DataMatrixReader
 

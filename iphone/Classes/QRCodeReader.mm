@@ -8,7 +8,7 @@
 
 #import "QRCodeReader.h"
 #import <zxing/qrcode/QRCodeReader.h>
-#import "FormatReader.h"
+#import "FormatReader+ForSubclass.h"
 
 @implementation QRCodeReader
 

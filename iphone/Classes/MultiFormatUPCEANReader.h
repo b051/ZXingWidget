@@ -10,8 +10,6 @@
 #import "FormatReader.h"
 
 
-@interface MultiFormatUPCEANReader : FormatReader {
+@interface MultiFormatUPCEANReader : FormatReader
 
-}
-- (id) init;
 @end

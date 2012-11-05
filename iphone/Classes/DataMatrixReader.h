@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "FormatReader.h"
 
+@interface DataMatrixReader : FormatReader
 
-@interface DataMatrixReader : FormatReader {
-
-}
-- (id) init;
 @end

@@ -17,8 +17,8 @@
 #include <UIKit/UIKit.h>
 #include <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
-#include "Decoder.h"
-#include "parsedResults/ParsedResult.h"
+#import "DecoderDelegate.h"
+#include "ParsedResult.h"
 #include "OverlayView.h"
 
 @protocol ZXingDelegate;

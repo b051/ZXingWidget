@@ -19,21 +19,12 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <zxing/common/Counted.h>
-#import <zxing/Result.h>
-#import <zxing/BinaryBitmap.h>
-#import <zxing/Reader.h>
-#import <zxing/ResultPointCallback.h>
 
-@interface FormatReader : NSObject {
-  zxing::Reader *reader_;
-}
+@interface FormatReader : NSObject
 
 + (void)registerFormatReader:(FormatReader *)formatReader;
 //+ (NSSet *)formatReaders;
 
-- (id)initWithReader:(zxing::Reader *)reader;
-- (zxing::Ref<zxing::Result>)decode:(zxing::Ref<zxing::BinaryBitmap>)grayImage;
-- (zxing::Ref<zxing::Result>)decode:(zxing::Ref<zxing::BinaryBitmap>)grayImage andCallback:(zxing::Ref<zxing::ResultPointCallback>)callback;
+
 
 @end

@@ -17,7 +17,7 @@
 
 #import "Decoder.h"
 #import "TwoDDecoderResult.h"
-#import "FormatReader.h"
+#import "FormatReader+ForSubclass.h"
 
 #include <zxing/BinaryBitmap.h>
 #include <zxing/ReaderException.h>
