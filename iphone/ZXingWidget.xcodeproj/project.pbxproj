@@ -154,6 +154,9 @@
 		3B81AAF9120F0A7E0022E5D4 /* GreyscaleRotatedLuminanceSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B81AAF7120F0A7E0022E5D4 /* GreyscaleRotatedLuminanceSource.h */; };
 		AA747D9F0F9514B9006C5449 /* ZXingWidget_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ZXingWidget_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		CF015A5C1655E5430052CCC0 /* ZXingWidgetQRCodeScannerController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CF015A581655E5430052CCC0 /* ZXingWidgetQRCodeScannerController.mm */; };
+		CF015A5F1655E68A0052CCC0 /* ZXingWidgetQRCodeScannerController.h in Headers */ = {isa = PBXBuildFile; fileRef = CF015A571655E5430052CCC0 /* ZXingWidgetQRCodeScannerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CF015A611655E6A10052CCC0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF015A601655E6A10052CCC0 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		CF067AC116479E0800B3EA9A /* FormatReader+ForSubclass.h in Headers */ = {isa = PBXBuildFile; fileRef = CF067ABF16479E0700B3EA9A /* FormatReader+ForSubclass.h */; };
 		E534594311987396000CB77F /* BarcodeFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E53458B511987396000CB77F /* BarcodeFormat.cpp */; };
 		E534594411987396000CB77F /* BarcodeFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = E53458B611987396000CB77F /* BarcodeFormat.h */; };
@@ -445,6 +448,9 @@
 		3B81AAF7120F0A7E0022E5D4 /* GreyscaleRotatedLuminanceSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreyscaleRotatedLuminanceSource.h; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* ZXingWidget_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXingWidget_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF015A571655E5430052CCC0 /* ZXingWidgetQRCodeScannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ZXingWidgetQRCodeScannerController.h; sourceTree = "<group>"; };
+		CF015A581655E5430052CCC0 /* ZXingWidgetQRCodeScannerController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZXingWidgetQRCodeScannerController.mm; sourceTree = "<group>"; };
+		CF015A601655E6A10052CCC0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CF067ABF16479E0700B3EA9A /* FormatReader+ForSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormatReader+ForSubclass.h"; sourceTree = "<group>"; };
 		D2AAC07E0554694100DB518D /* libZXingWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZXingWidget.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E53458B511987396000CB77F /* BarcodeFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BarcodeFormat.cpp; sourceTree = "<group>"; };
@@ -597,6 +603,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF015A611655E6A10052CCC0 /* CoreLocation.framework in Frameworks */,
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
 				E53459CB119873F3000CB77F /* UIKit.framework in Frameworks */,
 				E5345A661198792F000CB77F /* AudioToolbox.framework in Frameworks */,
@@ -619,6 +626,7 @@
 		0867D691FE84028FC02AAC07 /* ZXingWidget */ = {
 			isa = PBXGroup;
 			children = (
+				CF015A601655E6A10052CCC0 /* CoreLocation.framework */,
 				1D6038A113DF6FBF006F4B51 /* Tests */,
 				E53458B311987396000CB77F /* CoreSrc */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
@@ -626,9 +634,6 @@
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				E5345D2811999F53000CB77F /* Resources */,
 				034768DFFF38A50411DB9C8B /* Products */,
-				1D60391813DF7780006F4B51 /* AddressBook.framework */,
-				1D60391E13DF778C006F4B51 /* AddressBookUI.framework */,
-				1D6040C413E3393B006F4B51 /* AVFoundation.framework */,
 			);
 			name = ZXingWidget;
 			sourceTree = "<group>";
@@ -636,6 +641,9 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1D60391813DF7780006F4B51 /* AddressBook.framework */,
+				1D60391E13DF778C006F4B51 /* AddressBookUI.framework */,
+				1D6040C413E3393B006F4B51 /* AVFoundation.framework */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
 				E53459CA119873F3000CB77F /* UIKit.framework */,
 				E5345A651198792F000CB77F /* AudioToolbox.framework */,
@@ -648,6 +656,8 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CF015A571655E5430052CCC0 /* ZXingWidgetQRCodeScannerController.h */,
+				CF015A581655E5430052CCC0 /* ZXingWidgetQRCodeScannerController.mm */,
 				E5345A00119876A5000CB77F /* Actions */,
 				1D603E6213E20AF1006F4B51 /* ArrayAndStringCategories.h */,
 				1D603E6313E20AF1006F4B51 /* ArrayAndStringCategories.m */,
@@ -1085,6 +1095,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF015A5F1655E68A0052CCC0 /* ZXingWidgetQRCodeScannerController.h in Headers */,
 				1F027FF111A7BEEB006B06DE /* ParsedResult.h in Headers */,
 				1F027FBD11A7BEBF006B06DE /* ZXingWidgetController.h in Headers */,
 				1F027FB511A7BEAF006B06DE /* OverlayView.h in Headers */,
@@ -1462,6 +1473,7 @@
 				3B248F9214EF3A980065F0DA /* Decoder.cpp in Sources */,
 				3B248F9414EF3A980065F0DA /* Detector.cpp in Sources */,
 				3B248F9914EF3AF80065F0DA /* AztecReader.mm in Sources */,
+				CF015A5C1655E5430052CCC0 /* ZXingWidgetQRCodeScannerController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
