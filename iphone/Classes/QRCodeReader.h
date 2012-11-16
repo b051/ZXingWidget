@@ -9,8 +9,5 @@
 #import <Foundation/Foundation.h>
 #import "FormatReader.h"
 
-@interface QRCodeReader : FormatReader {
-
-}
-- (id) init;
+@interface QRCodeReader : FormatReader
 @end
