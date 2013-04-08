@@ -126,7 +126,7 @@ function xcode_build_target() {
     -configuration "${2}" \
     SYMROOT=$NU_SDK_BUILD \
     CURRENT_PROJECT_VERSION=1.0 \
-    build \
+    clean build \
     || die "XCode build failed for platform: ${1}."
 }
 

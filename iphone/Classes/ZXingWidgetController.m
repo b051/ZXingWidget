@@ -25,8 +25,6 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
-#import <AVFoundation/AVFoundation.h>
-
 #define CAMERA_SCALAR 1.12412 // scalar = (480 / (2048 / 480))
 #define FIRST_TAKE_DELAY 1.0
 #define ONE_D_BAND_HEIGHT 10.0

@@ -64,7 +64,7 @@
 			if (!locationManager) {
 				locationManager = [[CLLocationManager alloc] init];
 				locationManager.delegate = self;
-				locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+				locationManager.desiredAccuracy = self.desiredAccuracy ?: kCLLocationAccuracyKilometer;
 				locationManager.distanceFilter = 500;
 			}
 			self.lastScanResult = scanResult;
