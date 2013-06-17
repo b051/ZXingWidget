@@ -59,7 +59,7 @@
 {
 	[self.overlayView removeFromSuperview];
 	objc_msgSend(self, @selector(stopCapture));
-	if (!_location && _scanWithLocation) {
+	if (_scanWithLocation) {
 		if ([CLLocationManager locationServicesEnabled]) {
 			if (!locationManager) {
 				locationManager = [[CLLocationManager alloc] init];
@@ -68,6 +68,7 @@
 				locationManager.distanceFilter = 500;
 			}
 			self.lastScanResult = scanResult;
+			NSLog(@"start updating location");
 			return [locationManager startUpdatingLocation];
 		}
 	}
@@ -87,6 +88,7 @@
 	NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
 	if (abs(howRecent) < 15.0) {
 		self.location = newLocation;
+		NSLog(@"now location = %@", newLocation);
 		NSLog(@"self = %@", self);
 		NSLog(@"lastScanResult = %@", lastScanResult);
 		[self finishScan:lastScanResult];
