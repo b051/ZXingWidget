@@ -77,6 +77,12 @@
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
+    [self locationManager:locationManager didUpdateLocations:[[NSArray alloc] initWithObjects:newLocation, nil]];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+	CLLocation *newLocation = locations.lastObject;
 	NSDate* eventDate = newLocation.timestamp;
 	NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
 	if (abs(howRecent) < 15.0) {
@@ -89,6 +95,7 @@
 		locationManager = nil;
 	}
 }
+
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
