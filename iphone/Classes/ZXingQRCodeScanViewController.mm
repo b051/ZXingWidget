@@ -60,19 +60,26 @@
 	return _locationManager;
 }
 
-- (void)zxingController:(ZXingWidgetController *)controller didScanResult:(NSString *)scanResult
+- (void)setDesiredAccuracy:(CLLocationAccuracy)desiredAccuracy
+{
+	_desiredAccuracy = desiredAccuracy;
+	_locationManager.desiredAccuracy = desiredAccuracy;
+}
+
+- (void)zxingController:(ZXingWidgetController *)controller didScanResult:(NSString *)scan
 {
 	[self.overlayView removeFromSuperview];
 	objc_msgSend(self, @selector(stopCapture));
 	if (self.scanWithLocation) {
 		if ([CLLocationManager locationServicesEnabled]) {
-			self.scanResultCache = scanResult;
+			self.scanResultCache = scan;
 			NSLog(@"start updating location");
 			self.locationManager.delegate = self;
-			return [self.locationManager startUpdatingLocation];
+			[self.locationManager startUpdatingLocation];
+			return;
 		}
 	}
-	[self finishScan:scanResult withLocation:nil];
+	[self finishScan:scan withLocation:nil];
 }
 
 #pragma mark - CLLocationManagerDelegate
