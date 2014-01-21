@@ -14,11 +14,10 @@
 @interface ZXingQRCodeScanViewController : ZXingWidgetController
 
 @property (nonatomic, retain) OverlayView *overlayView;
-@property (nonatomic, retain) CLLocation *location;
 @property (nonatomic) BOOL scanWithLocation;
 @property (nonatomic) CLLocationAccuracy desiredAccuracy;
 
-- (void)finishScan:(NSString *)scanResult;
+- (void)finishScan:(NSString *)scanResult withLocation:(CLLocation *)location;
 - (void)scanDidCancel;
 
 @end

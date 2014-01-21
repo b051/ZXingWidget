@@ -12,14 +12,11 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface ZXingQRCodeScanViewController () <CLLocationManagerDelegate, ZXingDelegate>
-@property (nonatomic, retain) NSString *lastScanResult;
+@property (nonatomic, copy) NSString *scanResultCache;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @end
 
 @implementation ZXingQRCodeScanViewController
-
-@synthesize location=_location, scanWithLocation=_scanWithLocation;
-@synthesize lastScanResult, locationManager;
 
 - (id)init
 {
@@ -27,21 +24,19 @@
 		self.wantsFullScreenLayout = YES;
 		self.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"caf"] isDirectory:NO];
 		self.delegate = self;
-		_scanWithLocation = YES;
-		lastScanResult = nil;
+		self.scanWithLocation = YES;
 		self.readers = [NSSet setWithObject:[[QRCodeReader alloc] init]];
 	}
 	return self;
 }
 
-- (void)viewDidUnload
+- (void)dealloc
 {
-	[super viewDidUnload];
-	locationManager.delegate = nil;
-	locationManager = nil;
+	[super dealloc];
+	_locationManager.delegate = nil;
 }
 
-- (void)finishScan:(NSString *)scanResult
+- (void)finishScan:(NSString *)scanResult withLocation:(CLLocation *)location
 {
 }
 
@@ -55,53 +50,50 @@
 	[self scanDidCancel];
 }
 
+- (CLLocationManager *)locationManager
+{
+	if (!_locationManager) {
+		_locationManager = [[CLLocationManager alloc] init];
+		_locationManager.delegate = self;
+		_locationManager.desiredAccuracy = self.desiredAccuracy ?: kCLLocationAccuracyKilometer;
+	}
+	return _locationManager;
+}
+
 - (void)zxingController:(ZXingWidgetController *)controller didScanResult:(NSString *)scanResult
 {
 	[self.overlayView removeFromSuperview];
 	objc_msgSend(self, @selector(stopCapture));
-	if (_scanWithLocation) {
+	if (self.scanWithLocation) {
 		if ([CLLocationManager locationServicesEnabled]) {
-			if (!locationManager) {
-				locationManager = [[CLLocationManager alloc] init];
-				locationManager.delegate = self;
-				locationManager.desiredAccuracy = self.desiredAccuracy ?: kCLLocationAccuracyKilometer;
-				locationManager.distanceFilter = 500;
-			}
-			self.lastScanResult = scanResult;
+			self.scanResultCache = scanResult;
 			NSLog(@"start updating location");
-			return [locationManager startUpdatingLocation];
+			self.locationManager.delegate = self;
+			return [self.locationManager startUpdatingLocation];
 		}
 	}
-	[self finishScan:scanResult];
+	[self finishScan:scanResult withLocation:nil];
 }
 
 #pragma mark - CLLocationManagerDelegate
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    [self locationManager:locationManager didUpdateLocations:[[NSArray alloc] initWithObjects:newLocation, nil]];
-}
-
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-	CLLocation *newLocation = locations.lastObject;
-	NSDate* eventDate = newLocation.timestamp;
-	NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-	if (abs(howRecent) < 15.0) {
-		self.location = newLocation;
-		NSLog(@"now location = %@", newLocation);
-		NSLog(@"self = %@", self);
-		NSLog(@"lastScanResult = %@", lastScanResult);
-		[self finishScan:lastScanResult];
-		[locationManager stopUpdatingLocation];
-		locationManager.delegate = nil;
-		locationManager = nil;
-	}
-}
+	manager.delegate = nil;
+	[manager stopUpdatingLocation];
 
+	NSString *scan = self.scanResultCache;
+	self.scanResultCache = nil;
+	[self finishScan:scan withLocation:locations.lastObject];
+}
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-	[self finishScan:lastScanResult];
+	manager.delegate = nil;
+	[manager stopUpdatingLocation];
+
+	NSString *scan = self.scanResultCache;
+	self.scanResultCache = nil;
+	[self finishScan:scan withLocation:nil];
 }
 
 @end
